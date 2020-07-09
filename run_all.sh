@@ -1,2 +1,2 @@
-python unusualActivityStandalone.py
+python3 unusualActivityStandalone.py
 ./test.sh

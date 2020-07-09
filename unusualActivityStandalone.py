@@ -1,5 +1,3 @@
-%load_ext autoreload
-%autoreload 2
 import multiprocessing as mp
 import activityFunctions
 
@@ -18,7 +16,7 @@ sp_list = ['MMM', 'ABT', 'ABBV', 'ABMD', 'ACN', 'ATVI', 'ADBE', 'AMD', 'AAP', 'A
 calls_or_puts = 'puts'
 expiry = '2020-08-20'
 
-%%time
+
 pool = mp.Pool(mp.cpu_count())
 
 if calls_or_puts == 'calls':
@@ -49,7 +47,6 @@ returned.to_csv('unusual_'+calls_or_puts+'_activity_'+expiry[6:]+'_'+str(date.to
 calls_or_puts = 'calls'
 expiry = '2020-08-20'
 
-%%time
 pool = mp.Pool(mp.cpu_count())
 
 if calls_or_puts == 'calls':
@@ -60,6 +57,7 @@ else:
     call = partial(activityFunctions.unusualActivity_puts, exp_date=expiry)
     final = pool.map(call, sp_list)
 
+print('done')
 
 pool.close()    
 pool.join()

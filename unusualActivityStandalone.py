@@ -44,6 +44,17 @@ else:
     
 returned.to_csv('unusual_'+calls_or_puts+'_activity_'+expiry[6:]+'_'+str(date.today())+'.csv')
 
+returned.sort_values(by=['Value'])
+returned = returned[['Symbol', 'stock_price', 'strike', 'lastPrice','percentChange', 'volume', 'openInterest', 'impliedVolatility', 'V/OI', 'Value', 'Pct_OTM']].copy()
+returned = returned.rename(columns={'stock_price':'Stock Price', 'strike':'Strike', 'lastPrice': 'Last Price', 'percentChange':'% Change', 'volume':'Volume', 'openInterest':'Open Interest', 'impliedVolatility':'IV', 'Pct_OTM': '% OTM'})
+returned['% OTM'] = returned2['% OTM']*100
+returned = returned2.iloc[:10,:]
+f = open('unusual_activity_'+expiry[6:]+'_'+str(date.today())+'.txt', 'w')
+f.write('## Top Puts Traded '+expiry[6:]+' by Value (Volume * Price)\n')
+f.write(returned2.to_markdown(tablefmt="pipe", index=False))
+f.write('\n')
+
+
 calls_or_puts = 'calls'
 expiry = '2020-08-20'
 
@@ -74,3 +85,13 @@ else:
     returned=returned[returned['Pct_OTM']>.1]
     
 returned.to_csv('unusual_'+calls_or_puts+'_activity_'+expiry[6:]+'_'+str(date.today())+'.csv')
+
+returned.sort_values(by=['Value'])
+returned = returned[['Symbol', 'stock_price', 'strike', 'lastPrice','percentChange', 'volume', 'openInterest', 'impliedVolatility', 'V/OI', 'Value', 'Pct_OTM']].copy()
+returned = returned.rename(columns={'stock_price':'Stock Price', 'strike':'Strike', 'lastPrice': 'Last Price', 'percentChange':'% Change', 'volume':'Volume', 'openInterest':'Open Interest', 'impliedVolatility':'IV', 'Pct_OTM': '% OTM'})
+returned['% OTM'] = returned2['% OTM']*100
+returned = returned2.iloc[:10,:]
+f.write('## Top Puts Traded '+expiry[6:]+' by Value (Volume * Price)\n')
+f.write(returned2.to_markdown(tablefmt="pipe", index=False))
+f.write('\n')
+f.close()

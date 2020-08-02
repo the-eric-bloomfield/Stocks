@@ -49,8 +49,8 @@ returned = returned[['Symbol', 'stock_price', 'strike', 'lastPrice','percentChan
 returned = returned.rename(columns={'stock_price':'Stock Price', 'strike':'Strike', 'lastPrice': 'Last Price', 'percentChange':'% Change', 'volume':'Volume', 'openInterest':'Open Interest', 'impliedVolatility':'IV', 'Pct_OTM': '% OTM'})
 returned['% OTM'] = returned['% OTM']*100
 returned = returned.iloc[:10,:]
-f = open('unusual_activity_'+expiry[6:]+'_'+str(date.today())+'.txt', 'w')
-f.write('## Top Puts Traded '+expiry[6:]+' by Value (Volume * Price)\n')
+f = open('unusual_activity_'+str(date.today())[6:]+'_'+str(date.today())+'.txt', 'w')
+f.write('## Top Puts Traded '+str(date.today())[6:]+' by Value (Volume * Price)\n')
 f.write(returned.to_markdown(tablefmt="pipe", index=False))
 f.write('\n')
 
@@ -91,7 +91,7 @@ returned = returned[['Symbol', 'stock_price', 'strike', 'lastPrice','percentChan
 returned = returned.rename(columns={'stock_price':'Stock Price', 'strike':'Strike', 'lastPrice': 'Last Price', 'percentChange':'% Change', 'volume':'Volume', 'openInterest':'Open Interest', 'impliedVolatility':'IV', 'Pct_OTM': '% OTM'})
 returned['% OTM'] = returned['% OTM']*100
 returned = returned.iloc[:10,:]
-f.write('## Top Calls Traded '+expiry[6:]+' by Value (Volume * Price)\n')
+f.write('## Top Calls Traded '+str(date.today())[6:]+' by Value (Volume * Price)\n')
 f.write(returned.to_markdown(tablefmt="pipe", index=False))
 f.write('\n')
 f.close()

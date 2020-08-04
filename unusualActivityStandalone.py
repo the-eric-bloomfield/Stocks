@@ -44,7 +44,8 @@ else:
     
 returned.to_csv('unusual_'+calls_or_puts+'_activity_'+expiry[6:]+'_'+str(date.today())+'.csv')
 
-returned.sort_values(by=['Value'])
+returned.sort_values(by=['V/OI'])
+returned = returned.reset_index(drop=True)
 returned = returned[['Symbol', 'stock_price', 'strike', 'lastPrice','percentChange', 'volume', 'openInterest', 'impliedVolatility', 'V/OI', 'Value', 'Pct_OTM']].copy()
 returned = returned.rename(columns={'stock_price':'Stock Price', 'strike':'Strike', 'lastPrice': 'Last Price', 'percentChange':'% Change', 'volume':'Volume', 'openInterest':'Open Interest', 'impliedVolatility':'IV', 'Pct_OTM': '% OTM'})
 returned['% OTM'] = returned['% OTM']*100
@@ -86,7 +87,8 @@ else:
     
 returned.to_csv('unusual_'+calls_or_puts+'_activity_'+expiry[6:]+'_'+str(date.today())+'.csv')
 
-returned.sort_values(by=['Value'])
+returned.sort_values(by=['V/OI'])
+returned = returned.reset_index(drop=True)
 returned = returned[['Symbol', 'stock_price', 'strike', 'lastPrice','percentChange', 'volume', 'openInterest', 'impliedVolatility', 'V/OI', 'Value', 'Pct_OTM']].copy()
 returned = returned.rename(columns={'stock_price':'Stock Price', 'strike':'Strike', 'lastPrice': 'Last Price', 'percentChange':'% Change', 'volume':'Volume', 'openInterest':'Open Interest', 'impliedVolatility':'IV', 'Pct_OTM': '% OTM'})
 returned['% OTM'] = returned['% OTM']*100

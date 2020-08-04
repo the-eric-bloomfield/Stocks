@@ -1,3 +1,3 @@
 cd /home/pi/Documents/repos/Stocks/
-python unusualActivityStandalone.py
+python3.6 unusualActivityStandalone.py
 ./test.sh

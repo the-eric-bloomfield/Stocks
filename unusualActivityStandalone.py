@@ -44,6 +44,7 @@ else:
     
 returned.to_csv('unusual_'+calls_or_puts+'_activity_'+expiry[6:]+'_'+str(date.today())+'.csv')
 
+returned = returned[returned['percentChange']!=0]
 returned = returned[returned['Value']>1000]
 returned = returned.sort_values(by=['V/OI'], ascending=False)
 returned = returned.reset_index(drop=True)
@@ -88,6 +89,7 @@ else:
     
 returned.to_csv('unusual_'+calls_or_puts+'_activity_'+expiry[6:]+'_'+str(date.today())+'.csv')
 
+returned = returned[returned['percentChange']!=0]
 returned = returned[returned['Value']>1000]
 returned = returned.sort_values(by=['V/OI'], ascending=False)
 returned = returned.reset_index(drop=True)

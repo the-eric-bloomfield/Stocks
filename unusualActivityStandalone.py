@@ -52,14 +52,14 @@ returned = returned[['Symbol', 'stock_price', 'strike', 'lastPrice','percentChan
 returned = returned.rename(columns={'stock_price':'Stock Price', 'strike':'Strike', 'lastPrice': 'Last Price', 'percentChange':'% Change', 'volume':'Volume', 'openInterest':'Open Interest', 'impliedVolatility':'IV', 'Pct_OTM': '% OTM'})
 returned['% OTM'] = returned['% OTM']*100
 returned = returned.iloc[:10,:]
-f = open('unusual_activity_'+str(date.today())[6:]+'_'+str(date.today())+'.txt', 'w')
-f.write('## Top '+expiry[6:]+' Puts Traded '+str(date.today())[6:]+' by V/OI \n')
+f = open('unusual_activity_'+str(expiry)[6:]+'_'+str(date.today())+'.txt', 'w')
+f.write('## Top '+str(expiry[6:])+' Puts Traded '+str(date.today())[6:]+' by V/OI \n')
 f.write(returned.to_markdown(tablefmt="pipe", index=False))
 f.write('\n')
 
 
 calls_or_puts = 'calls'
-expiry = '2020-08-20'
+expiry = '2020-09-17'
 
 pool = mp.Pool(mp.cpu_count())
 
@@ -97,7 +97,7 @@ returned = returned[['Symbol', 'stock_price', 'strike', 'lastPrice','percentChan
 returned = returned.rename(columns={'stock_price':'Stock Price', 'strike':'Strike', 'lastPrice': 'Last Price', 'percentChange':'% Change', 'volume':'Volume', 'openInterest':'Open Interest', 'impliedVolatility':'IV', 'Pct_OTM': '% OTM'})
 returned['% OTM'] = returned['% OTM']*100
 returned = returned.iloc[:10,:]
-f.write('## Top ' +expiry[6:]+' Calls Traded '+str(date.today())[6:]+' by V/OI \n')
+f.write('## Top ' +str(expiry[6:])+' Calls Traded '+str(date.today())[6:]+' by V/OI \n')
 f.write(returned.to_markdown(tablefmt="pipe", index=False))
 f.write('\n')
 f.close()
